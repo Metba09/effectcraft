@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "effectcraft": {
+      "command": "bash",
+      "args": ["scripts/sandbox/run-cli.sh", "mcp", "--demo"]
+    }
+  }
+}
