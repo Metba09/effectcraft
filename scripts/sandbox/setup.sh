@@ -56,6 +56,11 @@ if [ "$(cat "$home/.vendor-stamp" 2>/dev/null)" != "$sum" ] || [ ! -f "$CARGO_HO
 [net]
 offline = true
 
+# Sandbox-only: unoptimised third-party crates compile far faster and use less disk on 1 core.
+# The repository's own profile (opt-level 2 for dependencies) is unchanged for everyone else.
+[profile.dev.package."*"]
+opt-level = 0
+
 [profile.dev]
 debug = false
 CFG

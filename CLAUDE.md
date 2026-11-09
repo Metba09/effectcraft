@@ -31,6 +31,11 @@ make test TEST_ARGS="-p effectcraft-keyframe"    # one crate
 make fmt                           # apply rustfmt
 ```
 
+The sandbox config built by `setup.sh` compiles third-party crates at `opt-level = 0` (the repository
+profile, used everywhere else, is untouched). Building the headless CLI (`make cli ARGS=--help`) takes
+about 20 minutes on one core and about 4 GB of disk the first time; `make cli ARGS="render-frame
+--max-side 480 --out frame.png"` then renders the demo project on the CPU, offline, no GPU.
+
 `core` is every workspace crate except `effectcraft` (desktop app), `effectcraft-web`,
 `effectcraft-ui-egui` and `effectcraft-cli`. `full` adds them and is hours of CPU on one core.
 A tool call lasts about five minutes: set `EC_TIMEOUT=270` and re-run on exit code 124 (Cargo
