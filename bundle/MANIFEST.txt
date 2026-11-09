@@ -1,0 +1,8 @@
+effectcraft sandbox bundle
+commit:      56c1d62084b77eae268d71bc5d79258b9253544a
+rust:        rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo:       cargo 1.99.1 (5f94df478 2026-08-27)
+lockfile:    f61225807290cd0d3471b2e0977deaa8a809cadcb6df5c174337300e66c83a84
+vendored:    710 crate directories
+stubbed:     Windows-only crates + unused patches (egui_system_font_provider egui_demo_lib egui_inspection)
+built:       2026-11-09T22:11:13Z
