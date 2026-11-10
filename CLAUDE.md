@@ -61,3 +61,14 @@ the headless MCP server through `scripts/sandbox/run-cli.sh` (it builds the CLI 
 (`scripts/sandbox/build-bundle.sh`). It vendors `Cargo.lock` as is, replaces Windows-only crates
 by empty stubs, adds stubs for `[patch]` entries that `Cargo.lock` does not use, packs the
 toolchain, and writes `SHA256SUMS`. Rebuild it whenever `Cargo.lock` or `rust-version` changes.
+
+**Bundle pointer.** `sandbox/BUNDLE.json` is the script-readable pointer to this bundle: upstream
+base commit, branch, pinned Rust version, SHA-256 of `Cargo.lock`, the mirror in `claude-memory`
+(`livrables/effectcraft-sandbox/`, source tarball only) and the offline archives on the orphan
+branch `sandbox-bundle-offline` of the fork. This repository is the source of truth; the mirror is
+checkable. `make verify-bundle` (no network) recomputes the hashes; add
+`ARGS="--livrable <dir>"` to check the mirrored tarball (hash first, opened only afterwards) or
+`ARGS="--archives <dir>"` for the offline archives. `make lint` runs it first. The pointer is
+**stale on purpose** after any change to `Cargo.lock` or `rust-version`: rebuild the bundle,
+refresh the mirror and the pointer (`verify_bundle.py --print` shows the new hashes), then lint again.
+The large payloads (toolchain, vendored crates) are not on the code branch.

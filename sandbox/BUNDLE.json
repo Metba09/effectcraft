@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "comment": "Pointeur lisible par script. Le dépôt est la source de vérité ; le livrable (claude-memory) n'en est qu'un miroir vérifiable. Le tarball est un `git archive` du commit ANTÉRIEUR source_commit : il ne contient donc pas ce fichier (empreinte non circulaire).",
+  "upstream_base": "a41ff5015c6687db15a6f074a47b870b8f09fece",
+  "branch": "sandbox-bundle",
+  "rust": {
+    "min_version": "1.95",
+    "bundled_toolchain": "1.99.1",
+    "toolchain_source": "conda-forge (static.rust-lang.org inaccessible depuis le sandbox)"
+  },
+  "vendor": {
+    "source": "crates.io + git (storytold/craft-libs, storytold/filmcraft, storytold/egui, storytold/winit)",
+    "verified_by": "Cargo.lock : sommes de contrôle crates.io via cargo vendor --locked ; dépendances git épinglées par commit (pas de somme de contrôle)",
+    "stored_in_git": false,
+    "stored_in_git_note": "Absent de la branche de code. Les archives hors-ligne sont sur la branche orpheline indiquée dans offline_archives.",
+    "lock_packages": {
+      "total": 746,
+      "registry": 653,
+      "git": 54,
+      "workspace_members_not_vendored": 39
+    },
+    "vendored_directories": 710,
+    "vendored_note": "707 = registry + git ; +3 stubs de [patch] inutilisés. Parmi les 707, 38 entrées registry (crates Windows) sont remplacées par un stub vide (24 noms distincts) ; 669 ont leur source complète. cargo vendor prend tous les paquets du lockfile : aucun paquet optionnel n'est « non téléchargé ».",
+    "approx_size": "435 Mo décompressé, 43 Mo vendor.tar.xz ; toolchain 192 Mo en parties",
+    "refetch": "bash scripts/sandbox/build-bundle.sh OUT_DIR   (en ligne ; ou make bundle OUT=dir)"
+  },
+  "lockfiles_sha256": {
+    "Cargo.lock": "f61225807290cd0d3471b2e0977deaa8a809cadcb6df5c174337300e66c83a84"
+  },
+  "bundle": {
+    "repo": "Metba09/claude-memory (privé)",
+    "path": "livrables/effectcraft-sandbox/",
+    "tarball": "effectcraft-sandbox-source.tar.gz",
+    "tarball_sha256": "42cd0c0ffd98f5e828dcf40297774d8ea5a3423beb2496ef7b2ea4bde4229413",
+    "source_commit": "56c1d62084b77eae268d71bc5d79258b9253544a"
+  },
+  "offline_archives": {
+    "repo": "Metba09/effectcraft (fork public)",
+    "branch": "sandbox-bundle-offline (orpheline)",
+    "commit": "7852860d94ca7251ed151714e6917018258507e8",
+    "dir": "bundle/",
+    "files": {
+      "MANIFEST.txt": "530c4b081e32320642255ba9672bbc611e7aa4e607c61e5f9215ac17a3e01cce",
+      "bootstrap.sh": "45ac234f3b50bd94083c3bff093f9320902e040cba88c87167918589b413289e",
+      "libasound2-dev_1.2.11-1ubuntu0.3_amd64.deb": "b83795b1ba0e40cfa8363359fd17a06260838d8ae0f315531771a62f7c7e215a",
+      "libasound2t64_1.2.11-1ubuntu0.3_amd64.deb": "5d17bfb5683eb99f1be951fe48e1be5bf3c52391913b6b74a8aecf9b4f5e779f",
+      "repo.tar.xz": "6de9110aae41be61367955d17f273264de4337cd7cd3b2de1777140dc590d63c",
+      "toolchain.tar.xz.part-00": "23d04e75e1a3dcad26c46b346194930a2423ebb0052104228aaae60a9e4f5886",
+      "toolchain.tar.xz.part-01": "6c3cb3874bbf75f4d6a5e932379b0fea931591457b80b3a934663b8a8ece71b4",
+      "toolchain.tar.xz.part-02": "451e3139bfef89a2f0b04328ac3cb65851b7eca4174747da7f438b6b57fcdab2",
+      "toolchain.tar.xz.part-03": "94c1035fcae5aa51547df75d057b0410c2012e18fdf316ae64202a20b16c44aa",
+      "toolchain.tar.xz.part-04": "c575f2606d11a7f0dd5d848fa012df1ec4cd732f5864a6b8af2467f87fc46caa",
+      "vendor.tar.xz": "b39ca8755c2d78b56cc98a400c41d233108486a031da2f98a235f737b89edea6"
+    },
+    "restore": "git clone --depth 1 --branch sandbox-bundle-offline https://github.com/Metba09/effectcraft.git && bash effectcraft/bundle/bootstrap.sh"
+  }
+}
